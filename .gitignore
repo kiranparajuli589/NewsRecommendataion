@@ -128,5 +128,6 @@ dmypy.json
 .pyre/
 
 
-./dataset
+dataset/
+.vscode/
 
