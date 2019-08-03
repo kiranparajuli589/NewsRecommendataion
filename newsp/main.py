@@ -80,7 +80,8 @@ Xde = vectorizer.transform(iter(title_dev))
 Xte = vectorizer.transform(iter(title_test))
 
 
-
+#LabelEncoder is a utility class to help normalize labels such that they contain only values between 0 and n_classes-1
+#This is sometimes useful for writing efficient Cython routines.
 encoder = LabelEncoder()
 encoder.fit(category_train)
 Ytr = encoder.transform(category_train)
@@ -124,8 +125,7 @@ for i in range(len(classifier_list)):
     pred = classifier.predict(Xde)
     prediction_list.append(pred[0]);
     print('predicted index for category ', pred[0])
-    print(classification_report(Yde,pred,
-    target_names=encoder.classes_))
+    print(classification_report(Yde,pred, target_names=encoder.classes_))
     score = classifier.score(Xte,Yte)
     print(classifier_names[i],'score is =>',score)
     print('====================================================\n')
@@ -147,7 +147,7 @@ url = ('https://newsapi.org/v2/top-headlines?'
        'apiKey=6d5c12ae14bf4c71a9367094be76b4c2')
 response = requests.get(url)
 json = response.json()
-print(json)
+#print(json)
 # step 2
 Trending_articles = defaultdict(dict)
 
@@ -296,16 +296,16 @@ Technology_news = [Technology_titles,Technology_contents,Technology_image_urls,T
 #sort_by='relevancy',
 #                                       page=2)
 
-# js = newsapi.get_everything(q='election',  
+# js = newsapi.get_everything(q='election',
 #                             sources='bbc-news,the-verge',
 #                             domains='bbc.co.uk,techcrunch.com',
 #                             from_param='2018-01-01',
 #                             to='2019-06-12',
 #                             language='en',
 #                             sort_by='relevancy',
-#                             page=2) 
-# 
-# 
+#                             page=2)
+#
+#
 
 url = ("https://newsapi.org/v2/top-headlines?sources=politico&apiKey=6d5c12ae14bf4c71a9367094be76b4c2")
 response = requests.get(url)
